@@ -1,4 +1,4 @@
 ImageManager
 ============
-
-Objective-C object used for lazy loading images
+ 
+Contains: Objective-C object used for lazy loading images and UIImage category for resizing images.
