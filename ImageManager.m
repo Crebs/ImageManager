@@ -36,9 +36,9 @@
     _lazyLoadDelegate = delegate;
     dispatch_async(dispatch_queue_create("com.Incravo.lazyload", NULL), ^{
         dispatch_semaphore_wait(_lazy_load_semaphore, DISPATCH_TIME_FOREVER);
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
-        [_imageCache setObject:image forKey:indexPath];
+		NSData* imageData = [NSData dataWithContentsOfURL:imageURL];
         dispatch_async(dispatch_get_main_queue(), ^{
+			[_imageCache setObject:[UIImage imageWithData:imageData] forKey:indexPath];
             [_lazyLoadDelegate imageCachedAtIndexPath:indexPath];
         });
         dispatch_semaphore_signal(_lazy_load_semaphore);
